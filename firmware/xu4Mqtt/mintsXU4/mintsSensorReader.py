@@ -151,8 +151,18 @@ def sensorSend(sensorID,sensorData,dateTime):
         AS3935Write(sensorData, dateTime)
     # End (Added on May 21 st, 2020 )
 
-    
 
+# For QLM RAD Reader - Added April 4 2022      
+def QLMRAD001Write(dataString,dateTime):
+    sensorName = "QLMRAD001"
+    if len(dataString)==4:
+        sensorDictionary = OrderedDict([
+            ("dateTime"    ,str(dateTime)),
+            ("event"      ,dataString),
+                        ])    
+        sensorFinisher(dateTime,sensorName,sensorDictionary)  
+    
+    
 ### FOR AIR MAR - Added January 4 2021 
 
 def getDeltaTimeAM(beginTime,deltaWanted):
@@ -351,8 +361,10 @@ def AS3935Write(sensorData,dateTime):
 def IPS7100Write(sensorData,dateTime):
     dataOut    = sensorData.split(',')
     sensorName = "IPS7100"
-    dataLength = 30
-    if(len(dataOut) == (dataLength)):
+    dataLength1 = 29
+    dataLength2 = 30
+    
+    if(len(dataOut) == (dataLength1) or len(dataOut) == (dataLength2)):
         sensorDictionary =  OrderedDict([
                 ("dateTime" , str(dateTime)), # always the same
         		("pc0_1"  ,dataOut[1]), 
@@ -870,7 +882,7 @@ def GPSGPGGA2Write(dataString,dateTime):
         sensorName = "GPSGPGGA2"
         sensorDictionary = OrderedDict([
                 ("dateTime"          ,str(dateTime)),
-                ("timestamp"         ,sensorData.timestamp),
+                ("timestamp"         ,str(sensorData.timestamp)),
                 ("latitudeCoordinate" ,getLatitudeCords(sensorData.lat,sensorData.lat_dir)),
                 ("longitudeCoordinate",getLongitudeCords(sensorData.lon,sensorData.lon_dir)),
                 ("latitude"          ,sensorData.lat),
@@ -923,7 +935,7 @@ def GPSGPRMC2Write(dataString,dateTime):
         sensorName = "GPSGPRMC2"
         sensorDictionary = OrderedDict([
                 ("dateTime"             ,str(dateTime)),
-                ("timestamp"            ,sensorData.timestamp),
+                ("timestamp"            ,str(sensorData.timestamp)),
                 ("status"               ,sensorData.status),
                 ("latitudeCoordinate"    ,getLatitudeCords(sensorData.lat,sensorData.lat_dir)),
                 ("longitudeCoordinate"   ,getLongitudeCords(sensorData.lon,sensorData.lon_dir)),

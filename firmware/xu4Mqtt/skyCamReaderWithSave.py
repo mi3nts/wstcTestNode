@@ -24,26 +24,23 @@ def main():
 
     onboardCapture = True
    
-    #try:
-    start = time.time()
-    currentImage,imagePath =  mSCR.getSnapShotXU4(subFolder)
-    print(currentImage)
-        
-    modelName = 'naiveBayesModel.sav'
-    oneDImage, imageShape = mSCR.generateFeatures(currentImage,imagePath)
-    print("Loading Classifier")
-    loadedModel = pickle.load(open(modelName, 'rb'))
-    print("Done Loading")
-    predictionBinary,prediction = mSCR.getPredictionMatrix(loadedModel,oneDImage)
-    print("Writing Resulting Images ...")
-    binaryImage = mSCR.writeBinaryImageXU4(predictionBinary,imageShape,imagePath,onboardCapture)
+    try:
+        start = time.time()
+        currentImage,imagePath =  mSCR.getSnapShotXU4(subFolder)
+        modelName = 'naiveBayesModel.sav'
+        oneDImage, imageShape = mSCR.generateFeatures(currentImage,imagePath)
+        print("Loading Classifier")
+        loadedModel = pickle.load(open(modelName, 'rb'))
+        print("Done Loading")
+        predictionBinary,prediction = mSCR.getPredictionMatrix(loadedModel,oneDImage)
+        print("Writing Resulting Images ...")
+        binaryImage = mSCR.writeBinaryImageXU4(predictionBinary,imageShape,imagePath,onboardCapture)
 
-    sensorDictionary  = mSCR.getResultsXU4002(currentImage,binaryImage,predictionBinary,prediction,imagePath,dateTimeNow)
-    mSR.sensorFinisher(dateTimeNow,sensorName,sensorDictionary)
-    mSCR.timeTaken("Preiction time is ",start)
-    
-    #except:
-    #   print("TRY AGAIN")
+        sensorDictionary  = mSCR.getResultsXU4002(currentImage,binaryImage,predictionBinary,prediction,imagePath,dateTimeNow)
+        mSR.sensorFinisher(dateTimeNow,sensorName,sensorDictionary)
+        mSCR.timeTaken("Preiction time is ",start)
+    except:
+        print("TRY AGAIN")
 
 
 if __name__ == "__main__":
