@@ -1,0 +1,2 @@
+0 10 * * * sudo reboot
+@reboot sudo cd /home/teamlary/gitHubRepos/centralHub/firmware/xu4Mqtt && sudo ./sudoRun.sh
