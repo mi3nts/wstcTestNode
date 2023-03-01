@@ -95,7 +95,7 @@ nanoPorts             = findNanoPorts()
 ozonePort             = findOzonePort()
 ipsPorts              = findIPSPorts()
 show2Port             = findPort("CP2104 USB to UART Bridge Controller")
-macAddress            = findMacAddress()
+macAddress            = "001e0610c0e4"
 latestDisplayOn       = False
 latestOn              = False
 airmarPort            = findAirmarPort()
@@ -118,7 +118,7 @@ if __name__ == "__main__":
     print("Due Port             : {0}".format(duePort))
     print("Ozone Port           : {0}".format(ozonePort))
     print("GPS Port             : {0}".format(gpsPort))
-    print("Airmar Port           : {0}".format(airmarPort))
+    print("Airmar Port          : {0}".format(airmarPort))
     print("Show2 Port           : {0}".format(show2Port))
     print("Latest On            : {0}".format(latestDisplayOn))
     print("Latest On                  : {0}".format(latestOn))

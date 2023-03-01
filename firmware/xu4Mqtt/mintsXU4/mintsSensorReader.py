@@ -1,16 +1,19 @@
 # ***************************************************************************
-#  mintsXU4
+#   mintsXU4
 #   ---------------------------------
 #   Written by: Lakitha Omal Harindha Wijeratne
 #   - for -
-#   Mints: Multi-scale Integrated Sensing and Simulation
+#   MINTS:  Multi-scale Integrated Sensing and Simulation
+#   &  
+#   TRECIS: Texas Research and Education Cyberinfrastructure Services
 #   ---------------------------------
-#   Date: February 4th, 2019
+#   Date: March 1st, 2023
 #   ---------------------------------
 #   This module is written for generic implimentation of MINTS projects
 #   --------------------------------------------------------------------------
 #   https://github.com/mi3nts
-#   http://utdmints.info/
+#   https://mints.utdallas.edu/
+#   https://trecis.cyberinfrastructure.org/
 #  ***************************************************************************
 
 import serial
@@ -35,8 +38,6 @@ latestDisplayOn = mD.latestDisplayOn
 dataFolderMQTT = mD.dataFolderMQTT
 latestOn       = mD.latestOn
 mqttOn         = mD.mqttOn
-
-
 
 
 def sensorFinisher(dateTime,sensorName,sensorDictionary):
