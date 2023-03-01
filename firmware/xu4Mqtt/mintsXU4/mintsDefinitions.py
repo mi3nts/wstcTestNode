@@ -5,13 +5,10 @@ import serial.tools.list_ports
 # Added March 1sr 2023: for ports with same names and PID 
 
 def findPortV2(inStr,lenStr):
-    print(inStr)
-    print(lenStr)
     ports    = list(serial.tools.list_ports.comports())
     outPorts =  []
     for p in ports:
         currentPort = str(p[1])
-        print(len(currentPort))
         if(currentPort.find(inStr)>=0 and len(currentPort)==lenStr):
             outPorts.append(str(p[0]).split(" ")[0])
     return(outPorts)
@@ -82,16 +79,11 @@ canareePorts          = findPortV2("Canaree PM",10)
 
 ipsPorts              = ["/dev/ttyS1"]
 
-
 # For MQTT 
 mqttOn                = True
 mqttCredentialsFile   = 'mintsXU4/credentials.yml'
 mqttBroker            = "mqtt.circ.utdallas.edu"
 mqttPort              =  8883  # Secure port
-
-
-gpsPort               = findPort("GPS/GNSS Receiver")
-
 
 if __name__ == "__main__":
     # the following code is for debugging
@@ -106,14 +98,14 @@ if __name__ == "__main__":
 
 
     #-------------------------------------------#
-    print("RG15 Ports :")
+    print("RG15 Ports:")
     for dev in rg15Ports:
         print("\t{0}".format(dev))
     #-------------------------------------------#
-    print("IPS Ports :")
+    print("IPS Ports:")
     for dev in ipsPorts:
         print("\t{0}".format(dev))
     #-------------------------------------------#
-    print("Canaree Ports :")
+    print("Canaree Ports:")
     for dev in canareePorts:
         print("\t{0}".format(dev))
