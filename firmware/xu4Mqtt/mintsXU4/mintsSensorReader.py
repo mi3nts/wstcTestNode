@@ -59,11 +59,13 @@ def sensorFinisher(dateTime,sensorName,sensorDictionary):
 
 def sensorFinisherReference(dateTime,sensorName,sensorDictionary):
     #Getting Write Path
+
+    print("-----------------------------------")
+    print(sensorName)
+    print(sensorDictionary)
     writePath = getWritePathReference(sensorName,dateTime)
     exists = directoryCheck(writePath)
     writeCSV2(writePath,sensorDictionary,exists)
-    print(writePath)
-    
     if(latestOn):
        mL.writeJSONLatestReference(sensorDictionary,sensorName)
     if(mqttOn):
@@ -71,9 +73,6 @@ def sensorFinisherReference(dateTime,sensorName,sensorDictionary):
            sensorName = "YXXDRPre"
        mL.writeMQTTLatest(sensorDictionary,sensorName)   
 
-    print("-----------------------------------")
-    print(sensorName)
-    print(sensorDictionary)
 
 def sensorFinisherIP(dateTime,sensorName,sensorDictionary):
     #Getting Write Path
@@ -179,7 +178,7 @@ def HCHDTWriteAM(sensorData,dateTime):
     dataOut    = sensorData.replace('*',',').split(',')
     sensorName = "HCHDT"
     dataLength = 3
-    print(sensorName+"-"+str(dataLength)+"-"+str(len(dataOut)))
+    # print(sensorName+"-"+str(dataLength)+"-"+str(len(dataOut)))
     if(len(dataOut) ==(dataLength +1) and bool(dataOut[1])):
         sensorDictionary = OrderedDict([
                 ("dateTime"    ,str(dateTime)),
@@ -194,7 +193,7 @@ def WIMWVWriteAM(sensorData,dateTime):
     dataOut    = sensorData.replace('*',',').split(',')
     sensorName = "WIMWV"
     dataLength = 6
-    print(sensorName+"-"+str(dataLength)+"-"+str(len(dataOut)))
+    # print(sensorName+"-"+str(dataLength)+"-"+str(len(dataOut)))
     if(len(dataOut) ==(dataLength +1) and bool(dataOut[1])):
         sensorDictionary = OrderedDict([
                 ("dateTime"       ,str(dateTime)),
@@ -243,7 +242,7 @@ def GPVTGWriteAM(sensorData,dateTime):
     sensorName = "GPVTG"
     dataLength = 10
     #print(dataOut)
-    #print(sensorName+"-"+str(dataLength)+"-"+str(len(dataOut)))
+    # print(sensorName+"-"+str(dataLength)+"-"+str(len(dataOut)))
     if(len(dataOut) ==(dataLength +1) and bool(dataOut[1])):
         sensorDictionary = OrderedDict([
                 ("dateTime"               ,str(dateTime)),
@@ -265,7 +264,7 @@ def GPZDAWriteAM(sensorData,dateTime):
     sensorName = "GPZDA"
     dataLength = 5
     #print(dataOut)
-    #print(sensorName+"-"+str(dataLength)+"-"+str(len(dataOut)))
+    # print(sensorName+"-"+str(dataLength)+"-"+str(len(dataOut)))
     if(len(dataOut) ==(dataLength +1) and bool(dataOut[1])):
         sensorDictionary = OrderedDict([
                 ("dateTime"              ,str(dateTime)),
@@ -317,7 +316,7 @@ def YXXDRWriteAM(sensorData,dateTime):
     dataOut    = sensorData.replace('*',',').split(',')
     sensorName = "YXXDR"
     dataLength = 17
-    print(sensorName+"-"+str(dataLength)+"-"+str(len(dataOut)))
+    # print(sensorName+"-"+str(dataLength)+"-"+str(len(dataOut)))
     if(len(dataOut) ==(dataLength +1) and bool(dataOut[1])):
         sensorDictionary = OrderedDict([
                 ("dateTime"                       ,str(dateTime)),

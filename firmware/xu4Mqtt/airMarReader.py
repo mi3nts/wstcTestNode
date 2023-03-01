@@ -42,7 +42,7 @@ def main():
                 if chr(c) == '\n':
                     dataString     = (''.join(line)).replace("\r\n","")
                     dateTime  = datetime.datetime.now()
-           
+                    
                     if (dataString.startswith("$HCHDT") and mSR.getDeltaTimeAM(lastHCHDT,delta)):
                         mSR.HCHDTWriteAM(dataString,dateTime)
                         lastHCHDT = time.time()

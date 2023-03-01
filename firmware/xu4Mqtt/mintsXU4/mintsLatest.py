@@ -83,8 +83,6 @@ def writeMQTTLatest(sensorDictionary,sensorName):
     
     return True
     
-
-
 def writeJSONLatest(sensorDictionary,sensorName):
     directoryIn  = dataFolder+"/"+macAddress+"/"+sensorName+".json"
     print(directoryIn)
