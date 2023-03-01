@@ -8,7 +8,7 @@ import serial
 from collections import OrderedDict
 
 dataFolder    =  mD.dataFolder
-airmarPort    =  mD.airmarPort[0]
+airmarPort    =  mD.airmarPorts[0]
 print(airmarPort)
 
 def main():
@@ -75,7 +75,7 @@ def main():
             
                     
                     if (dataString.startswith("$YXXDR,") and mSR.getDeltaTimeAM(lastYXXDR,delta)):
-                        mSR.YXXDRWriteAM2(dataString,dateTime)
+                        mSR.YXXDRWriteAM(dataString,dateTime)
                         lastYXXDR = time.time()
                     # print(str(dataString))
 
