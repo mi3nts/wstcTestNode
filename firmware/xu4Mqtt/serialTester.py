@@ -25,23 +25,16 @@ def main():
 
     line = []
     while True:
-        # try:
+
         for c in ser.read():
             line.append(chr(c))
-            print(line)
             if chr(c) == '\n':
                 dataString     = (''.join(line)).replace("\r\n","")
-                print(line)
-                print("-=----")
                 dateTime  = datetime.datetime.now()
                 print(dataString)
                 print(dateTime)
                 line = []
                 break;
-        # except:
-        #     print("Incomplete String Read")
-            # line = []
-                    
     ser.close()
 
 
