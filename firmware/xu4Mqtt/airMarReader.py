@@ -38,10 +38,12 @@ def main():
         # try:
             for c in ser.read():
                 line.append(chr(c))
+
                 if chr(c) == '\n':
                     dataString     = (''.join(line)).replace("\r\n","")
                     dateTime  = datetime.datetime.now()
-
+                    print(dataString)
+                    print(dataString)
 
                     if (dataString.startswith("$HCHDT") and mSR.getDeltaTimeAM(lastHCHDT,delta)):
                         mSR.HCHDTWriteAM(dataString,dateTime)
