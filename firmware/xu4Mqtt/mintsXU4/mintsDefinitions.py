@@ -5,12 +5,18 @@ import serial.tools.list_ports
 # Added March 1sr 2023: for ports with same names and PID 
 
 def findPortV2(inStr,lenStr):
-    ports = list(serial.tools.list_ports.comports())
+    print(inStr)
+    print(lenStr)
+    ports    = list(serial.tools.list_ports.comports())
+    outPorts =  []
     for p in ports:
         currentPort = str(p[1])
-        if(currentPort.find("PID=10C4")>=0 and len(currentPort)== lenStr):
-            return(currentPort.split(" ")[0])
+        print(len(currentPort))
+        if(currentPort.find(inStr)>=0 and len(currentPort)==lenStr):
+            outPorts.append(str(p[0]).split(" ")[0])
+    return(outPorts)
 
+print(findPortV2("USB-Serial Controller",21))
 
 def findPort(find):
     ports = list(serial.tools.list_ports.comports())
@@ -64,20 +70,24 @@ dataFolderMQTTReference   = "/home/teamlary/mintsData/referenceMQTT"
 dataFolder                = "/home/teamlary/mintsData/raw"
 dataFolderMQTT            = "/home/teamlary/mintsData/rawMQTT"
 
-ipsPorts              = findIPSPorts()
 
 macAddress            = "001e0610c0e4"
 
 latestDisplayOn       = False
 latestOn              = False
 
-airmarPort            = findAirmarPort()
+airmarPorts           = findPortV2("USB-Serial Controller D",23)
+rg15Ports             = findPortV2("USB-Serial Controller",21)
+canareePorts          = findPortV2("Canaree PM",10)
+
+ipsPorts              = ["/dev/ttyS1"]
+
 
 # For MQTT 
-mqttOn                    = True
-mqttCredentialsFile      = 'mintsXU4/credentials.yml'
-mqttBroker               = "mqtt.circ.utdallas.edu"
-mqttPort                 =  8883  # Secure port
+mqttOn                = True
+mqttCredentialsFile   = 'mintsXU4/credentials.yml'
+mqttBroker            = "mqtt.circ.utdallas.edu"
+mqttPort              =  8883  # Secure port
 
 
 gpsPort               = findPort("GPS/GNSS Receiver")
@@ -89,13 +99,18 @@ if __name__ == "__main__":
     print("Mac Address                : {0}".format(macAddress))
     print("Data Folder Reference      : {0}".format(dataFolderReference))
     print("Data Folder Raw            : {0}".format(dataFolder))
-    print("Airmar Port                : {0}".format(airmarPort))
+    print("Airmar Port                : {0}".format(airmarPorts))
+    print("RG15 Port                  : {0}".format(rg15Ports))
     print("Latest On                  : {0}".format(latestOn))
     print("MQTT On                    : {0}".format(mqttOn))
     print("MQTT Credentials File      : {0}".format(mqttCredentialsFile))
     print("MQTT Broker and Port       : {0}, {1}".format(mqttOn,mqttPort))
     
-    # #-------------------------------------------#
-    # print("IPS Ports :")
-    # for dev in ipsPorts:
-    #     print("\t{0}".format(dev))
+    #-------------------------------------------#
+    print("IPS Ports :")
+    for dev in ipsPorts:
+        print("\t{0}".format(dev))
+    #-------------------------------------------#
+    print("Canaree Ports :")
+    for dev in canariPorts:
+        print("\t{0}".format(dev))
