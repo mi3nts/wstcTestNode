@@ -43,7 +43,7 @@ def main():
                     dataString     = (''.join(line)).replace("\r\n","")
                     dateTime  = datetime.datetime.now()
                     print(dataString)
-                    print(dataString)
+                    print(dateTime)
 
                     if (dataString.startswith("$HCHDT") and mSR.getDeltaTimeAM(lastHCHDT,delta)):
                         mSR.HCHDTWriteAM(dataString,dateTime)
