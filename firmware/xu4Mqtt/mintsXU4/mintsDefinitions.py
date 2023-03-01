@@ -13,8 +13,6 @@ def findPortV2(inStr,lenStr):
             outPorts.append(str(p[0]).split(" ")[0])
     return(outPorts)
 
-print(findPortV2("USB-Serial Controller",21))
-
 def findPort(find):
     ports = list(serial.tools.list_ports.comports())
     for p in ports:
