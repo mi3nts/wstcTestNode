@@ -28,7 +28,7 @@ def main():
         # try:
         for c in ser.read():
             line.append(chr(c))
-
+            print(line)
             if chr(c) == '\n':
                 dataString     = (''.join(line)).replace("\r\n","")
                 dateTime  = datetime.datetime.now()
