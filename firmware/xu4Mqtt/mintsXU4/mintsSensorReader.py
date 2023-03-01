@@ -356,8 +356,6 @@ def AS3935Write(sensorData,dateTime):
                 ])
         sensorFinisher(dateTime,sensorName,sensorDictionary)
 # End (Added on May 21 st, 2020)
-
-        
 def IPS7100Write(sensorData,dateTime):
     dataOut    = sensorData.split(',')
     sensorName = "IPS7100"
@@ -383,6 +381,70 @@ def IPS7100Write(sensorData,dateTime):
                 ("pm10_0"  ,dataOut[27])
                 ])
         sensorFinisher(dateTime,sensorName,sensorDictionary)
+        
+def IPS7100WriteV2(sensorData,dateTime):
+    dataOut    = sensorData.split(',')
+
+    dataLength1 = 29
+    dataLength2 = 30
+    
+    if(len(dataOut) == (dataLength1) or len(dataOut) == (dataLength2)):
+        sensorName = "IPS7100"
+        sensorDictionary =  OrderedDict([
+                ("dateTime" , str(dateTime)), # always the same
+        		("pc0_1"  ,dataOut[1]), 
+            	("pc0_3"  ,dataOut[3]),
+                ("pc0_5"  ,dataOut[5]),
+                ("pc1_0"  ,dataOut[7]),
+            	("pc2_5"  ,dataOut[9]),
+        		("pc5_0"  ,dataOut[11]), 
+            	("pc10_0" ,dataOut[13]),
+                ("pm0_1"  ,dataOut[15]),
+            	("pm0_3"  ,dataOut[17]),
+        		("pm0_5"  ,dataOut[19]), 
+            	("pm1_0"  ,dataOut[21]),
+                ("pm2_5"  ,dataOut[23]),
+            	("pm5_0"  ,dataOut[25]),         
+                ("pm10_0"  ,dataOut[27])
+                ])
+        sensorFinisher(dateTime,sensorName,sensorDictionary)
+    if(len(dataOut) == 44):
+        sensorName = "IPS7100CNR"      
+        sensorDictionary =  OrderedDict([
+                ("dateTime", str(dateTime)), # always the same
+        		("pc0_1"   ,dataOut[1]), 
+            	("pc0_3"   ,dataOut[3]),
+                ("pc0_5"   ,dataOut[5]),
+                ("pc1_0"   ,dataOut[7]),
+            	("pc2_5"   ,dataOut[9]),
+        		("pc5_0"   ,dataOut[11]), 
+            	("pc10_0"  ,dataOut[13]),
+                ("pm0_1"   ,dataOut[15]),
+            	("pm0_3"   ,dataOut[17]),
+        		("pm0_5"   ,dataOut[19]), 
+            	("pm1_0"   ,dataOut[21]),
+                ("pm2_5"   ,dataOut[23]),
+            	("pm5_0"   ,dataOut[25]),         
+                ("pm10_0"  ,dataOut[27])
+                ])        
+        sensorFinisher(dateTime,sensorName,sensorDictionary)
+ 		
+        time.sleep(1)
+        sensorName = "BME688CNR"      
+        sensorDictionary =  OrderedDict([
+                ("dateTime"    , str(dateTime)), # always the same
+        		("temperature" ,dataOut[29]), 
+            	("humidity"    ,dataOut[31]),
+                ("pressure"    ,dataOut[33]),
+                ("vocAqi"      ,dataOut[35]),
+            	("bvocEq"      ,dataOut[37]),
+        		("gasEst"      ,dataOut[39]), 
+            	("co2Eq"       ,dataOut[41])
+                ])       
+    	
+        
+        sensorFinisher(dateTime,sensorName,sensorDictionary)
+
         
 def BME680Write(sensorData,dateTime):
     dataOut    = sensorData.split(':')

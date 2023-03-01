@@ -35,7 +35,7 @@ def main(portNum):
                         dataString     = (''.join(line))
                         dataStringPost = dataString.replace('\n', '')
                         print("================")
-                        mSR.IPS7100Write(dataStringPost,datetime.datetime.now())
+                        mSR.IPS7100WriteV2(dataStringPost,datetime.datetime.now())
                         line = []
                         break
             except OSError as e:
