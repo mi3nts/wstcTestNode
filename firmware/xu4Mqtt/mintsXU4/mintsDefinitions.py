@@ -99,18 +99,21 @@ if __name__ == "__main__":
     print("Mac Address                : {0}".format(macAddress))
     print("Data Folder Reference      : {0}".format(dataFolderReference))
     print("Data Folder Raw            : {0}".format(dataFolder))
-    print("Airmar Port                : {0}".format(airmarPorts))
-    print("RG15 Port                  : {0}".format(rg15Ports))
     print("Latest On                  : {0}".format(latestOn))
     print("MQTT On                    : {0}".format(mqttOn))
     print("MQTT Credentials File      : {0}".format(mqttCredentialsFile))
     print("MQTT Broker and Port       : {0}, {1}".format(mqttOn,mqttPort))
-    
+
+
+    #-------------------------------------------#
+    print("RG15 Ports :")
+    for dev in rg15Ports:
+        print("\t{0}".format(dev))
     #-------------------------------------------#
     print("IPS Ports :")
     for dev in ipsPorts:
         print("\t{0}".format(dev))
     #-------------------------------------------#
     print("Canaree Ports :")
-    for dev in canariPorts:
+    for dev in canareePorts:
         print("\t{0}".format(dev))
