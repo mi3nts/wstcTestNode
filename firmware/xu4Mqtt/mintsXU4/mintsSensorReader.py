@@ -310,7 +310,7 @@ def WIMDAWriteAM(sensorData,dateTime):
                 ("checkSum"                        ,dataOut[21])
         	     ])
 
-        ssensorFinisherReference(dateTime,sensorName,sensorDictionary)
+        sensorFinisherReference(dateTime,sensorName,sensorDictionary)
 
 
 def YXXDRWriteAM(sensorData,dateTime):
