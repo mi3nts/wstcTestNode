@@ -35,7 +35,7 @@ def main():
     #this will store the line
     line = []
     while True:
-        # try:
+        try:
             for c in ser.read():
                 line.append(chr(c))
 
@@ -83,10 +83,13 @@ def main():
 
                     line = []
                     break
-        # except:
-        #     print("Incomplete String Read")
+        except Exception as e:
+            time.sleep(.5)
+            print ("Error and type: %s - %s." % (e,type(e)))
+            time.sleep(.5)                    
             line = []
-                    
+            break
+
     ser.close()
 
 
