@@ -31,6 +31,7 @@ def main():
             print(line)
             if chr(c) == '\n':
                 dataString     = (''.join(line)).replace("\r\n","")
+                print("-=----")
                 dateTime  = datetime.datetime.now()
                 print(dataString)
                 print(dateTime)
