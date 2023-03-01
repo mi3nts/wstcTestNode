@@ -42,9 +42,7 @@ def main():
                 if chr(c) == '\n':
                     dataString     = (''.join(line)).replace("\r\n","")
                     dateTime  = datetime.datetime.now()
-                    print(dataString)
-                    print(dateTime)
-
+           
                     if (dataString.startswith("$HCHDT") and mSR.getDeltaTimeAM(lastHCHDT,delta)):
                         mSR.HCHDTWriteAM(dataString,dateTime)
                         lastHCHDT = time.time()
@@ -67,7 +65,7 @@ def main():
 
                     if (dataString.startswith("$GPZDA") and mSR.getDeltaTimeAM(lastGPZDA,delta)):
                         mSR.GPZDAWriteAM(dataString,dateTime)
-                        lastGZDA = time.time()
+                        lastGPZDA = time.time()
                     # print(str(dataString))
 
                     if (dataString.startswith("$WIMDA") and mSR.getDeltaTimeAM(lastWIMDA,delta)):
