@@ -18,8 +18,9 @@ class BME680:
         while ready is None and retriesIn:
             try:
                 BME680.sensor = bme680.BME680(self.i2c_addr,self.i2c)
-                print('Calibration data:')
+
                 if self.debug:
+                    print('Calibration data:')
                     for name in dir(BME680.sensor.calibration_data):
                         if not name.startswith('_'):
                             value = getattr(BME680.sensor.calibration_data, name)
@@ -61,16 +62,16 @@ class BME680:
       
     def read(self):
         if BME680.sensor.get_sensor_data():
-            temperature = BME680.sensor.data.temperature(0),
-            pressure    = BME680.sensor.data.pressure(0)/1000,
+            temperature = BME680.sensor.data.temperature,
+            pressure    = BME680.sensor.data.pressure/1000,
             humidity    = BME680.sensor.data.humidity
             if BME680.sensor.data.heat_stable:
                 gas = BME680.sensor.data.gas_resistance
             else:
                 gas = -1
             
-            print("Temperature: {:.2f}'C, Pressure: {:.2f}'C, Relative Humidity:\ {:.2f}%, Gas:\ {:.2f}".format\
-                  (temperature,pressure,humidity,gas))
+            # print("Temperature: {:.2f}'C, Pressure: {:.2f}'C, Relative Humidity:\ {:.2f}%, Gas:\ {:.2f}".format\
+            #       (temperature,pressure,humidity,gas))
 
         
             return temperature,pressure,humidity, gas;
