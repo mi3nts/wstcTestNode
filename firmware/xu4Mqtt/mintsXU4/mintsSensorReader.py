@@ -514,7 +514,7 @@ def BME680WriteI2c(dataOut,dateTime):
                 ("humidity"     ,dataOut[2]),
             	("gas"          ,dataOut[3])
                 ])
-
+        sensorFinisher(dateTime,sensorName,sensorDictionary)
         
 def BME680Write(sensorData,dateTime):
     dataOut    = sensorData.split(':')
