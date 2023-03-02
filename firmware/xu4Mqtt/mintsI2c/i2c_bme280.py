@@ -45,7 +45,7 @@ class BME280:
     def read(self):
         measurement = bme280.sample(self.i2c, self.i2c_addr, self.calibration_params)
         if measurement is not None:
-            A = measurement.pressure / 101325;
+            A = measurement.pressure*100 / 101325;
             B = 1 / 5.25588;
             C = pow(A, B);
             C = 1.0 - C;
