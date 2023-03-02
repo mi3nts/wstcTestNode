@@ -23,10 +23,10 @@
 # For more information see the manual pages of crontab(5) and cron(8)
 # 
 # m h  dom mon dow   command
-@reboot cd /home/teamlary/gitHubRepos/centralHub/firmware/xu4Mqtt && ./runAllJetson.sh
-15 * * * * cd /home/teamlary/gitHubRepos/centralHub/firmware/xu4Mqtt && ./runAllJetson.sh
+@reboot cd /home/teamlary/gitHubRepos/wstcTestNode/firmware/xu4Mqtt && ./runAll.sh 
+30 * * * * cd /home/teamlary/gitHubRepos/wstcTestNode/firmware/xu4Mqtt && ./runAll.sh 
 * * * * * rsync -avzrtu -e "ssh -p 2222" /home/teamlary/mintsData/raw/ mints@mintsdata.utdallas.edu:raw
-*/5 * * * * cd /home/teamlary/gitHubRepos/centralHub/firmware/xu4Mqtt && python3 skyCamReaderWithSave.py
-*/5 * * * * cd /home/teamlary/gitHubRepos/centralHub/firmware/xu4Mqtt && python3 deleterJetson.py
+* * * * * rsync -avzrtu -e "ssh -p 2222" /home/teamlary/mintsData/reference/ mints@mintsdata.utdallas.edu:Downloads/reference
+5 * * * * cd /home/teamlary/gitHubRepos/wstcTestNode/firmware/xu4Mqtt && python3 deleter.py
 
 
