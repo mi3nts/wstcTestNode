@@ -74,7 +74,7 @@ class BME680:
                   (temperature[0],pressure[0],humidity,gas))
 
         
-            return temperature[0],pressure[0],humidity, gas;
+            return [temperature[0],pressure[0],humidity, gas];
 
         else:
             time.sleep(1)

@@ -47,8 +47,8 @@ class BME280:
         if measurement is not None:
             print("Temperature: {:.2f}'C, Pressure: {:.2f}'C, Relative Humidity: {:.2f}%".format(measurement.temperature,measurement.pressure,measurement.humidity))
             time.sleep(1)
-            return measurement.temperature,measurement.pressure,measurement.humidity;
+            return [measurement.temperature,measurement.pressure,measurement.humidity];
         else:
             time.sleep(1)
-            return;
             print("BME280 Measurments not read")    
+            return;
