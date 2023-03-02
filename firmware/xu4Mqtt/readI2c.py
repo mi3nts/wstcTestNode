@@ -59,7 +59,7 @@ def main():
             if scd30_valid:
                 dateTime = datetime.datetime.now()
                 dataOut   = scd30.read()
-                if output is not None:
+                if dataOut is not None:
                     mSR.SCD30WriteI2c(dataOut,dateTime)
             print("=======================")
             time.sleep(2.5)
@@ -67,8 +67,8 @@ def main():
             print("======= BME280 ========")
             if bme280_valid:
                 dateTime = datetime.datetime.now()
-                output = bme280.read()
-                if output is not None:
+                dataOut = bme280.read()
+                if dataOut is not None:
                     mSR.BME280WriteI2c(dataOut,dateTime)
             print("=======================")
             time.sleep(2.5)            
@@ -76,8 +76,8 @@ def main():
             print("======= BME680 ========")
             if bme680_valid:
                 dateTime = datetime.datetime.now()
-                output = bme680.read()
-                if output is not None:
+                dataOut = bme680.read()
+                if dataOut is not None:
                     mSR.BME680WriteI2c(dataOut,dateTime)
             print("=======================")    
             time.sleep(2.5)   
