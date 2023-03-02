@@ -196,7 +196,6 @@ def getDeltaTimeAM(beginTime,deltaWanted):
     return (time.time() - beginTime)> deltaWanted
 
 def HCHDTWriteAM(sensorData,dateTime):
-
     dataOut    = sensorData.replace('*',',').split(',')
     sensorName = "HCHDT"
     dataLength = 3
@@ -268,9 +267,9 @@ def GPVTGWriteAM(sensorData,dateTime):
     if(len(dataOut) ==(dataLength +1) and bool(dataOut[1])):
         sensorDictionary = OrderedDict([
                 ("dateTime"               ,str(dateTime)),
-        	("courseOGTrue"           ,dataOut[1]),
+        	    ("courseOGTrue"           ,dataOut[1]),
             	("relativeToTN"           ,dataOut[2]),
-	        ("courseOGMagnetic"       ,dataOut[3]),
+	            ("courseOGMagnetic"       ,dataOut[3]),
                 ("relativeToMN"           ,dataOut[4]),
                 ("speedOverGroundKnots"   ,dataOut[5]),
             	("SOGKUnits"              ,dataOut[6]),
@@ -385,6 +384,7 @@ def YXXDRWriteAM(sensorData,dateTime):
 
 ########################    
 # Added on May 21 st, 2020 
+
 def SEN0232Write(sensorData,dateTime):
     dataOut    = sensorData.split(':')
     sensorName = "SEN0232"
@@ -501,6 +501,20 @@ def IPS7100WriteV2(sensorData,dateTime):
         
         sensorFinisher(dateTime,sensorName,sensorDictionary)
 
+
+        
+def BME680WriteI2c(dataOut,dateTime):
+    sensorName = "BME680"
+    dataLength = 4
+    if(len(dataOut) == (dataLength)):
+        sensorDictionary =  OrderedDict([
+                ("dateTime"     , str(dateTime)), # always the same
+        		("temperature"  ,dataOut[0]), # check with arduino code
+            	("pressure"     ,dataOut[1]),
+                ("humidity"     ,dataOut[2]),
+            	("gas"          ,dataOut[3])
+                ])
+
         
 def BME680Write(sensorData,dateTime):
     dataOut    = sensorData.split(':')
@@ -516,7 +530,22 @@ def BME680Write(sensorData,dateTime):
                 ])
         sensorFinisher(dateTime,sensorName,sensorDictionary)
         
-        
+
+def BME280WriteI2c(dataOut,dateTime):
+    sensorName = "BME280"
+    dataLength = 4
+    if(len(dataOut) == (dataLength)):
+        sensorDictionary =  OrderedDict([
+                ("dateTime"     , str(dateTime)), # always the same
+        		("temperature"  ,dataOut[0]), # check with arduino code
+            	("pressure"     ,dataOut[1]),
+                ("humidity"     ,dataOut[2]),
+            	("altitude"     ,dataOut[3])
+                ])
+        sensorFinisher(dateTime,sensorName,sensorDictionary)
+
+
+
 def BME280Write(sensorData,dateTime):
     dataOut    = sensorData.split(':')
     sensorName = "BME280"
@@ -547,6 +576,18 @@ def MGS001Write(sensorData,dateTime):
             	("ch4"        ,dataOut[5]),
                 ("h2"         ,dataOut[6]),
             	("c2h5oh  "   ,dataOut[7]),
+                ])
+        sensorFinisher(dateTime,sensorName,sensorDictionary)
+
+def SCD30WriteI2c(dataOut,dateTime):
+    sensorName = "SCD30"
+    dataLength = 3
+    if(len(dataOut) == (dataLength)):
+        sensorDictionary =  OrderedDict([
+                ("dateTime"     ,str(dateTime)),
+        		("c02"          ,dataOut[0]),
+            	("temperature"  ,dataOut[1]),
+                ("humidity"     ,dataOut[2]),
                 ])
         sensorFinisher(dateTime,sensorName,sensorDictionary)
 
@@ -668,11 +709,6 @@ def AS7262Write(sensorData,dateTime):
         	    ])
 
         sensorFinisher(dateTime,sensorName,sensorDictionary)
-
-
-
-
-
 
 
 def HTU21DWrite(sensorData,dateTime):
@@ -947,7 +983,12 @@ def TB108LWrite(sensorData, dateTime):
 def getDeltaTime(beginTime,deltaWanted):
     return (time.time() - beginTime)> deltaWanted
 
-
+def delayMints(timeSpent,loopIntervalIn):
+    loopIntervalReal = loopIntervalIn ;
+    if(loopIntervalReal>timeSpent):
+        waitTime = loopIntervalReal - timeSpent;
+        time.sleep(waitTime);
+    return time.time();
 
 def getLatitudeCords(latitudeStr,latitudeDirection):
     latitude = float(latitudeStr)

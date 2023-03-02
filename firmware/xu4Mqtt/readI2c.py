@@ -19,8 +19,12 @@
 #   http://utdmints.info/
 #  ***************************************************************************
 
-
+import datetime
 #import SI1132
+
+from mintsXU4 import mintsSensorReader as mSR
+from mintsXU4 import mintsDefinitions as mD
+
 from mintsI2c.i2c_scd30 import SCD30
 from mintsI2c.i2c_as7265x import AS7265X
 from mintsI2c.i2c_bme280 import BME280
@@ -39,45 +43,52 @@ scd30   = SCD30(bus,debug)
 bme680  = BME680(bus,debug)
 bme280  = BME280(bus,debug)
 
+loopInterval = 10;
+
 def main():
+
+
     scd30_valid    = scd30.initiate(30)
-#    as7265x_valid  = as7265x.initiate()
     bme280_valid   = bme280.initiate(30)
     bme680_valid   = bme680.initiate(30)
     
+    startTime = time.time()
     while True:
         try:
-            print("=======================")
             print("======== SCD30 ========")
-            
             if scd30_valid:
-                output = scd30.read()
-                print("----")
-                print(output)
+                dateTime = datetime.datetime.now()
+                dataOut   = scd30.read()
+                if output is not None:
+                    mSR.SCD30WriteI2c(dataOut,dateTime)
             print("=======================")
             time.sleep(2.5)
 
             print("======= BME280 ========")
             if bme280_valid:
+                dateTime = datetime.datetime.now()
                 output = bme280.read()
-                print("----")
-                print(output)
+                if output is not None:
+                    mSR.BME280WriteI2c(dataOut,dateTime)
             print("=======================")
             time.sleep(2.5)            
             
             print("======= BME680 ========")
             if bme680_valid:
+                dateTime = datetime.datetime.now()
                 output = bme680.read()
-                print("----")
-                print(output)
+                if output is not None:
+                    mSR.BME680WriteI2c(dataOut,dateTime)
+            print("=======================")    
+            time.sleep(2.5)   
 
-            print("=======================")     
+            startTime = mSR.delayMints(time.time() - startTime,loopInterval)
+
         except Exception as e:
             print(e)
     		
             break   
-        
-#    as7265x.shut_down()
+
 
 if __name__ == "__main__":
    main()
