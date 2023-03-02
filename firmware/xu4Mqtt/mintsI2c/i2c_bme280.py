@@ -50,7 +50,7 @@ class BME280:
             C = pow(A, B);
             C = 1.0 - C;
             altitude = C / 0.0000225577;
-            print("Temperature: {:.2f}'C, Pressure: {:.2f}'C, Relative Humidity: {:.2f}%,  Altitude: {:.2f}m".format(measurement.temperature,measurement.pressure,measurement.humidity,altitude))
+            print("Temperature: {:.2f}'C, Pressure: {:.2f}'P, Relative Humidity: {:.2f}%,  Altitude: {:.2f}m".format(measurement.temperature,measurement.pressure,measurement.humidity,altitude))
             time.sleep(1)
             return [measurement.temperature,measurement.pressure*100,measurement.humidity,altitude];
         else:
