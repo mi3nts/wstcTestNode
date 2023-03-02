@@ -12,7 +12,7 @@ macAddress    = mD.macAddress
 
 def main():
     dateStart      = datetime.date(2016, 12, 6)
-    deleteDaysBack = 1
+    deleteDaysBack = 30
     dateEnd =  datetime.date.today() -  datetime.timedelta(deleteDaysBack)
 
     deleteDays = [dateStart + datetime.timedelta(days=x) for x in range((dateEnd-dateStart).days + 1)]
