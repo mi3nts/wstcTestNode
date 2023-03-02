@@ -66,10 +66,10 @@ class BME680:
                 sensor.data.temperature,
                 sensor.data.pressure/1000,
                 sensor.data.humidity)
-                print('{0},{1} Ohms'.format(
+            print('{0},{1} Ohms'.format(
                     output,
                     sensor.data.gas_resistance))
-                return sensor.data.temperature,sensor.data.pressure/1000,sensor.data.humidity,sensor.data.gas_resistance/1000;
+            return sensor.data.temperature,sensor.data.pressure/1000,sensor.data.humidity,sensor.data.gas_resistance/1000;
         else:
             time.sleep(1)
             print("BME680 Measurments not read")    
