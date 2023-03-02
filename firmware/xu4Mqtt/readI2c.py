@@ -21,10 +21,10 @@
 
 
 #import SI1132
-from i2c_scd30 import SCD30
-from i2c_as7265x import AS7265X
-from i2c_bme280 import BME280
-from i2c_bme680 import BME680
+from mintsI2c.i2c_scd30 import SCD30
+from mintsI2c.i2c_as7265x import AS7265X
+from mintsI2c.i2c_bme280 import BME280
+from mintsI2c.i2c_bme680 import BME680
 
 import sys
 import time
