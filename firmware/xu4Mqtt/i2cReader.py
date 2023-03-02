@@ -47,7 +47,6 @@ loopInterval = 10;
 
 def main():
 
-
     scd30_valid    = scd30.initiate(30)
     bme280_valid   = bme280.initiate(30)
     bme680_valid   = bme680.initiate(30)
