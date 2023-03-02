@@ -61,14 +61,21 @@ class BME680:
       
     def read(self):
         if BME680.sensor.get_sensor_data() and BME680.sensor.data.heat_stable:
-            output = '{0:.2f} C,{1:.2f} hPa,{2:.2f} %RH'.format(
-                BME680.sensor.data.temperature,
-                BME680.sensor.data.pressure/1000,
-                BME680.sensor.data.humidity)
-            print('{0},{1} Ohms'.format(
-                    output,
-                    BME680.sensor.data.gas_resistance))
-            return BME680.sensor.data.temperature,BME680.sensor.data.pressure/1000,BME680.sensor.data.humidity,BME680.sensor.data.gas_resistance/1000;
+                temperature = BME680.sensor.data.temperature,
+                pressure    = BME680.sensor.data.pressure/1000,
+                humidity    = BME680.sensor.data.humidity
+            if BME680.sensor.data.heat_stable:
+                gas = BME680.sensor.data.gas_resistance
+            else:
+                gas = -1
+ 
+            print("Temperature: " + str(temperature))
+            print("Pressure:    " + str(pressure))
+            print("Humidity:    " + str(humidity))
+            print("Gas:         " + str(gas))
+        
+            return temperature,pressure,humidity, gas;
+
         else:
             time.sleep(1)
             print("BME680 Measurments not read")    
