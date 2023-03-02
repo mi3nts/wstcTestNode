@@ -70,8 +70,8 @@ class BME680:
             else:
                 gas = -1
             
-            # print("Temperature: {:.2f}'C, Pressure: {:.2f}'C, Relative Humidity:\ {:.2f}%, Gas:\ {:.2f}".format\
-            #       (temperature,pressure,humidity,gas))
+            print("Temperature: {:.2f}'C, Pressure: {:.2f}'C, Relative Humidity:\ {:.2f}%, Gas:\ {:.2f}".format\
+                  (temperature[0],pressure[0],humidity,gas))
 
         
             return temperature[0],pressure[0],humidity, gas;
