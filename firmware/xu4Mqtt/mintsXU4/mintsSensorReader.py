@@ -157,6 +157,28 @@ def sensorSend(sensorID,sensorData,dateTime):
     # End (Added on May 21 st, 2020 )
 
 
+
+# Added on Mar 2, 2023
+def RG15Write(sensorData, dateTime):
+    sensorData = sensorData.replace('Acc', "").replace('Total', "").replace('Event', "").replace('Total', "").replace('RInt', "").replace('mph', "").replace('m', "").replace(" ", "")
+    dataOut    = sensorData.split(',')
+    sensorName = "RG15"
+    dataLength = 4
+    
+    #Data String: Acc  0.00 mm, EventAcc  0.00 mm, TotalAcc  0.00 mm, RInt  0.00 mmph
+    if(len(dataOut) ==(dataLength)):
+        sensorDictionary = OrderedDict([
+                ("dateTime"          ,str(dateTime)),
+                ("accumulation"      ,dataOut[0]),
+                ("eventAccumulation" ,dataOut[1]),
+                ("totalAccumulation" ,dataOut[2]),
+                ("rainPerInterval"   ,dataOut[3])
+        	     ])
+        print(sensorDictionary)
+        sensorFinisher(dateTime,sensorName,sensorDictionary)
+
+
+
 # For QLM RAD Reader - Added April 4 2022      
 def QLMRAD001Write(dataString,dateTime):
     sensorName = "QLMRAD001"
