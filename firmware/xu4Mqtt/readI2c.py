@@ -55,6 +55,7 @@ def main():
     startTime = time.time()
     while True:
         try:
+            print("========================================================")
             print("======== SCD30 ========")
             if scd30_valid:
                 dateTime = datetime.datetime.now()
@@ -64,6 +65,7 @@ def main():
             print("=======================")
             time.sleep(2.5)
 
+            print("========================================================")
             print("======= BME280 ========")
             if bme280_valid:
                 dateTime = datetime.datetime.now()
@@ -72,7 +74,7 @@ def main():
                     mSR.BME280WriteI2c(dataOut,dateTime)
             print("=======================")
             time.sleep(2.5)            
-            
+            print("========================================================")            
             print("======= BME680 ========")
             if bme680_valid:
                 dateTime = datetime.datetime.now()
