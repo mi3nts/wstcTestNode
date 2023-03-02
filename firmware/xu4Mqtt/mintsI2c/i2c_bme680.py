@@ -9,7 +9,6 @@ import bme680
 class BME680:
 
     def __init__(self, i2c_dev,debugIn):
-        
         self.i2c_addr = bme680.I2C_ADDR_SECONDARY
         self.i2c      = i2c_dev
         self.debug    = debugIn

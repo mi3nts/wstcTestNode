@@ -33,7 +33,7 @@ import smbus2
 
 debug  = False 
 
-bus     = smbus2.SMBus(1)
+bus     = smbus2.SMBus(2)
 
 scd30   = SCD30(bus,debug)
 bme680  = BME680(bus,debug)
