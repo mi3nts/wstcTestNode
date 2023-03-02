@@ -50,12 +50,17 @@ def main():
             print("=======================")
             print("======== SCD30 ========")
             if scd30_valid:
-                scd30.read()
+                output = scd30.read()
+                print("----")
+                print(output)
             print("=======================")
             time.sleep(2.5)
             print("======= BME280 ========")
             if bme280_valid:
-                bme280.read()
+                output = bme280.read()
+                print("----")
+                print(output)
+
             print("=======================")
             time.sleep(2.5)            
 #            print("======= AS7265X ========")
@@ -64,7 +69,10 @@ def main():
 #            print("=======================")       
             print("======= BME280 ========")
             if bme680_valid:
-                bme680.read()
+                output = bme680.read()
+                print("----")
+                print(output)
+
             print("=======================")     
         except Exception as e:
             print(e)
