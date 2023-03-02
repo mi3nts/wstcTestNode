@@ -63,10 +63,10 @@ class BME680:
     def read(self):
         if BME680.sensor.get_sensor_data():
             temperature = BME680.sensor.data.temperature,
-            pressure    = BME680.sensor.data.pressure/1000,
+            pressure    = BME680.sensor.data.pressure/10,
             humidity    = BME680.sensor.data.humidity
             if BME680.sensor.data.heat_stable:
-                gas = BME680.sensor.data.gas_resistance
+                gas = BME680.sensor.data.gas_resistance/100
             else:
                 gas = -1
             
