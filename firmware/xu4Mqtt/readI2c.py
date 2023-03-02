@@ -49,25 +49,23 @@ def main():
         try:
             print("=======================")
             print("======== SCD30 ========")
+            
             if scd30_valid:
                 output = scd30.read()
                 print("----")
                 print(output)
             print("=======================")
             time.sleep(2.5)
+
             print("======= BME280 ========")
             if bme280_valid:
                 output = bme280.read()
                 print("----")
                 print(output)
-
             print("=======================")
             time.sleep(2.5)            
-#            print("======= AS7265X ========")
-#            if as7265x_valid:
-#                as7265x.read()
-#            print("=======================")       
-            print("======= BME280 ========")
+            
+            print("======= BME680 ========")
             if bme680_valid:
                 output = bme680.read()
                 print("----")

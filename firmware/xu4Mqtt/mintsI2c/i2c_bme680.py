@@ -17,7 +17,7 @@ class BME680:
         ready = None
         while ready is None and retriesIn:
             try:
-                sensor = bme680.BME680(self.i2c_addr,self.i2c)
+                BME680.sensor = bme680.BME680(self.i2c_addr,self.i2c)
                 print('Calibration data:')
                 for name in dir(sensor.calibration_data):
 
@@ -27,11 +27,11 @@ class BME680:
                         if isinstance(value, int):
                             print('{}: {}'.format(name, value))
 
-                sensor.set_humidity_oversample(bme680.OS_2X)
-                sensor.set_pressure_oversample(bme680.OS_4X)
-                sensor.set_temperature_oversample(bme680.OS_8X)
-                sensor.set_filter(bme680.FILTER_SIZE_3)
-                sensor.set_gas_status(bme680.ENABLE_GAS_MEAS)
+                BME680.sensor.set_humidity_oversample(bme680.OS_2X)
+                BME680.sensor.set_pressure_oversample(bme680.OS_4X)
+                BME680.sensor.set_temperature_oversample(bme680.OS_8X)
+                BME680.sensor.set_filter(bme680.FILTER_SIZE_3)
+                BME680.sensor.set_gas_status(bme680.ENABLE_GAS_MEAS)
 
                 print('\n\nInitial reading:')
                 for name in dir(sensor.data):
@@ -40,9 +40,9 @@ class BME680:
                     if not name.startswith('_'):
                         print('{}: {}'.format(name, value))
 
-                sensor.set_gas_heater_temperature(320)
-                sensor.set_gas_heater_duration(150)
-                sensor.select_gas_heater_profile(0)
+                BME680.sensor.set_gas_heater_temperature(320)
+                BME680.sensor.set_gas_heater_duration(150)
+                BME680.sensor.select_gas_heater_profile(0)
                 ready = True
                 
             except OSError:
@@ -60,15 +60,15 @@ class BME680:
             return True       
       
     def read(self):
-        if sensor.get_sensor_data() and sensor.data.heat_stable:
+        if BME680.sensor.get_sensor_data() and BME680.sensor.data.heat_stable:
             output = '{0:.2f} C,{1:.2f} hPa,{2:.2f} %RH'.format(
-                sensor.data.temperature,
-                sensor.data.pressure/1000,
-                sensor.data.humidity)
+                BME680.sensor.data.temperature,
+                BME680.sensor.data.pressure/1000,
+                BME680.sensor.data.humidity)
             print('{0},{1} Ohms'.format(
                     output,
-                    sensor.data.gas_resistance))
-            return sensor.data.temperature,sensor.data.pressure/1000,sensor.data.humidity,sensor.data.gas_resistance/1000;
+                    BME680.sensor.data.gas_resistance))
+            return BME680.sensor.data.temperature,BME680.sensor.data.pressure/1000,BME680.sensor.data.humidity,BME680.sensor.data.gas_resistance/1000;
         else:
             time.sleep(1)
             print("BME680 Measurments not read")    
