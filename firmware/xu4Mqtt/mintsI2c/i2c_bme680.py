@@ -19,13 +19,13 @@ class BME680:
             try:
                 BME680.sensor = bme680.BME680(self.i2c_addr,self.i2c)
                 print('Calibration data:')
-                for name in dir(BME680.sensor.calibration_data):
+                if self.debug:
+                    for name in dir(BME680.sensor.calibration_data):
+                        if not name.startswith('_'):
+                            value = getattr(BME680.sensor.calibration_data, name)
 
-                    if not name.startswith('_'):
-                        value = getattr(BME680.sensor.calibration_data, name)
-
-                        if isinstance(value, int):
-                            print('{}: {}'.format(name, value))
+                            if isinstance(value, int):
+                                print('{}: {}'.format(name, value))
 
                 BME680.sensor.set_humidity_oversample(bme680.OS_2X)
                 BME680.sensor.set_pressure_oversample(bme680.OS_4X)
@@ -61,18 +61,17 @@ class BME680:
       
     def read(self):
         if BME680.sensor.get_sensor_data():
-            temperature = BME680.sensor.data.temperature,
-            pressure    = BME680.sensor.data.pressure/1000,
+            temperature = BME680.sensor.data.temperature[0],
+            pressure    = BME680.sensor.data.pressure[0]/1000,
             humidity    = BME680.sensor.data.humidity
             if BME680.sensor.data.heat_stable:
                 gas = BME680.sensor.data.gas_resistance
             else:
                 gas = -1
- 
-            print("Temperature: " + str(temperature))
-            print("Pressure:    " + str(pressure))
-            print("Humidity:    " + str(humidity))
-            print("Gas:         " + str(gas))
+            
+            print("Temperature: {:.2f}'C, Pressure: {:.2f}'C, Relative Humidity:\ {:.2f}%, Gas:\ {:.2f}".format\
+                  (temperature,pressure,humidity,gas))
+
         
             return temperature,pressure,humidity, gas;
 
