@@ -19,10 +19,10 @@ class BME680:
             try:
                 BME680.sensor = bme680.BME680(self.i2c_addr,self.i2c)
                 print('Calibration data:')
-                for name in dir(sensor.calibration_data):
+                for name in dir(BME680.sensor.calibration_data):
 
                     if not name.startswith('_'):
-                        value = getattr(sensor.calibration_data, name)
+                        value = getattr(BME680.sensor.calibration_data, name)
 
                         if isinstance(value, int):
                             print('{}: {}'.format(name, value))
