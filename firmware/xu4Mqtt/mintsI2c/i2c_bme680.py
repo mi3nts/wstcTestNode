@@ -34,8 +34,8 @@ class BME680:
                 BME680.sensor.set_gas_status(bme680.ENABLE_GAS_MEAS)
 
                 print('\n\nInitial reading:')
-                for name in dir(sensor.data):
-                    value = getattr(sensor.data, name)
+                for name in dir(BME680.sensor.data):
+                    value = getattr(BME680.sensor.data, name)
 
                     if not name.startswith('_'):
                         print('{}: {}'.format(name, value))
