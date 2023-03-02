@@ -45,9 +45,14 @@ class BME280:
     def read(self):
         measurement = bme280.sample(self.i2c, self.i2c_addr, self.calibration_params)
         if measurement is not None:
-            print("Temperature: {:.2f}'C, Pressure: {:.2f}'C, Relative Humidity: {:.2f}%".format(measurement.temperature,measurement.pressure,measurement.humidity))
+            A = measurement.pressure*100 / 101325;
+            B = 1 / 5.25588;
+            C = pow(A, B);
+            C = 1.0 - C;
+            altitude = C / 0.0000225577;
+            print("Temperature: {:.2f}'C, Pressure: {:.2f}'C, Relative Humidity: {:.2f}%,  Altitude: {:.2f}%".format(measurement.temperature,measurement.pressure,measurement.humidity,altitude))
             time.sleep(1)
-            return [measurement.temperature,measurement.pressure,measurement.humidity];
+            return [measurement.temperature,measurement.pressure*100,measurement.humidity,altitude];
         else:
             time.sleep(1)
             print("BME280 Measurments not read")    
