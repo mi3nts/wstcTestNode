@@ -412,6 +412,7 @@ def AS3935Write(sensorData,dateTime):
                 ])
         sensorFinisher(dateTime,sensorName,sensorDictionary)
 # End (Added on May 21 st, 2020)
+
 def IPS7100Write(sensorData,dateTime):
     dataOut    = sensorData.split(',')
     sensorName = "IPS7100"
@@ -438,9 +439,10 @@ def IPS7100Write(sensorData,dateTime):
                 ])
         sensorFinisher(dateTime,sensorName,sensorDictionary)
         
-def IPS7100WriteV2(sensorData,dateTime):
-    dataOut    = sensorData.split(',')
 
+def IPS7100WriteV2(sensorData,dateTime):
+
+    dataOut    = sensorData.split(',')
     dataLength1 = 29
     dataLength2 = 30
     
@@ -463,7 +465,9 @@ def IPS7100WriteV2(sensorData,dateTime):
             	("pm5_0"  ,dataOut[25]),         
                 ("pm10_0"  ,dataOut[27])
                 ])
+        print(sensorDictionary
         sensorFinisher(dateTime,sensorName,sensorDictionary)
+
     if(len(dataOut) == 44):
         sensorName = "IPS7100CNR"      
         sensorDictionary =  OrderedDict([
@@ -482,8 +486,9 @@ def IPS7100WriteV2(sensorData,dateTime):
                 ("pm2_5"   ,dataOut[23]),
             	("pm5_0"   ,dataOut[25]),         
                 ("pm10_0"  ,dataOut[27])
-                ])        
-        sensorFinisher(dateTime,sensorName,sensorDictionary)
+                ]) 
+        print(sensorDictionary)       
+        # sensorFinisher(dateTime,sensorName,sensorDictionary)
  		
         time.sleep(1)
         sensorName = "BME688CNR"      
@@ -497,9 +502,8 @@ def IPS7100WriteV2(sensorData,dateTime):
         		("gasEst"      ,dataOut[39]), 
             	("co2Eq"       ,dataOut[41])
                 ])       
-    	
-        
-        sensorFinisher(dateTime,sensorName,sensorDictionary)
+        print(sensorDictionary)
+        # sensorFinisher(dateTime,sensorName,sensorDictionary)
 
 
         
