@@ -34,8 +34,8 @@ def main(portNum):
                     if chr(c) == '\n':
                         dataString     = (''.join(line))
                         dataStringPost = dataString.replace('\n', '')
-                        print(dataStringPost)
                         print("================")
+                        print(dataStringPost)
                         mSR.IPS7100WriteV2(dataStringPost,datetime.datetime.now())
                         line = []
                         break
