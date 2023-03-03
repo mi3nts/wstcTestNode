@@ -441,7 +441,6 @@ def IPS7100Write(sensorData,dateTime):
         
 
 def IPS7100WriteV2(sensorData,dateTime):
-
     dataOut    = sensorData.split(',')
     dataLength1 = 29
     dataLength2 = 30
@@ -502,10 +501,8 @@ def IPS7100WriteV2(sensorData,dateTime):
         		("gasEst"      ,dataOut[39]), 
             	("co2Eq"       ,dataOut[41])
                 ])       
-        print(sensorDictionary)
+        # print(sensorDictionary)
         sensorFinisher(dateTime,sensorName,sensorDictionary)
-
-
         
 def BME680WriteI2c(dataOut,dateTime):
     sensorName = "BME680"
