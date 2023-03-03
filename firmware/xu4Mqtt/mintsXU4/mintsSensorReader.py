@@ -465,7 +465,7 @@ def IPS7100WriteV2(sensorData,dateTime):
             	("pm5_0"  ,dataOut[25]),         
                 ("pm10_0"  ,dataOut[27])
                 ])
-        print(sensorDictionary
+        print(sensorDictionary)
         sensorFinisher(dateTime,sensorName,sensorDictionary)
 
     if(len(dataOut) == 44):
