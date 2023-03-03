@@ -6,7 +6,7 @@ from mintsXU4 import mintsDefinitions as mD
 import sys
 
 dataFolder  = mD.dataFolder
-ipsPorts    = mD.ipsPorts
+ipsPorts    = mD.canareePorts
 baudRate    = 115200
 
 def main(portNum):
@@ -34,13 +34,14 @@ def main(portNum):
                     if chr(c) == '\n':
                         dataString     = (''.join(line))
                         dataStringPost = dataString.replace('\n', '')
+                        print(dataStringPost)
                         print("================")
-                        mSR.IPS7100WriteV2(dataStringPost,datetime.datetime.now())
+                        # mSR.CNR001Write(dataStringPost,datetime.datetime.now())
                         line = []
                         break
             except OSError as e:
                 print ("Error: %s - %s." % (e.filename, e.strerror))
-                print("IPS7100 not Connected: Check connection")
+                print("Canaree Not Connected: Check connection")
         ser.close()
 
 if __name__ == "__main__":
