@@ -487,8 +487,8 @@ def IPS7100WriteV2(sensorData,dateTime):
             	("pm5_0"   ,dataOut[25]),         
                 ("pm10_0"  ,dataOut[27])
                 ]) 
-        print(sensorDictionary)       
-        # sensorFinisher(dateTime,sensorName,sensorDictionary)
+        # print(sensorDictionary)       
+        sensorFinisher(dateTime,sensorName,sensorDictionary)
  		
         time.sleep(1)
         sensorName = "BME688CNR"      
@@ -503,7 +503,7 @@ def IPS7100WriteV2(sensorData,dateTime):
             	("co2Eq"       ,dataOut[41])
                 ])       
         print(sensorDictionary)
-        # sensorFinisher(dateTime,sensorName,sensorDictionary)
+        sensorFinisher(dateTime,sensorName,sensorDictionary)
 
 
         
