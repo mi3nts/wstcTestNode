@@ -1158,6 +1158,14 @@ def getWritePath(labelIn,dateTime):
     writePath = dataFolder+"/"+macAddress+"/"+str(dateTime.year).zfill(4)  + "/" + str(dateTime.month).zfill(2)+ "/"+str(dateTime.day).zfill(2)+"/"+ "MINTS_"+ macAddress+ "_" +labelIn + "_" + str(dateTime.year).zfill(4) + "_" +str(dateTime.month).zfill(2) + "_" +str(dateTime.day).zfill(2) +".csv"
     return writePath;
 
+
+def getWritePathAudio(sensorName,birdName,confidence,dateTime):
+    writePath = dataFolder+"/"+macAddress+"/"+str(dateTime.year).zfill(4)  + "/" + str(dateTime.month).zfill(2)+ "/"+str(dateTime.day).zfill(2)+\
+        "/audio/MINTS_"+ macAddress+ "_" +sensorName + "_" + birdName + "_" + str(confidence) + "_" + \
+            str(dateTime.year).zfill(4) + "_" +str(dateTime.month).zfill(2) + "_" +str(dateTime.day).zfill(2) + "_" +str(dateTime.hour).zfill(2) + "_" +str(dateTime.minute).zfill(2)+ "_" +str(dateTime.second).zfill(2) +".wav"
+    return writePath;
+
+
 def getListDictionaryFromPath(dirPath):
     print("Reading : "+ dirPath)
     reader = csv.DictReader(open(dirPath))
