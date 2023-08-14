@@ -31,6 +31,6 @@ sleep 5
 
 kill $(pgrep -f 'python3 audioReader.py')
 sleep 5
-cd /home/teamlary/gitHubRepos/centralHub/firmware/xu4Mqtt && /home/teamlary/birdSongs/bin/python3 audioReader.py
+cd /home/teamlary/gitHubRepos/wstcTestNode/firmware/xu4Mqtt && /home/teamlary/birdSongs/bin/python3 audioReader.py
 
 
