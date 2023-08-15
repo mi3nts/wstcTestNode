@@ -1159,10 +1159,12 @@ def getWritePath(labelIn,dateTime):
     return writePath;
 
 
-def getWritePathAudio(sensorName,birdName,confidence,dateTime):
-    writePath = dataFolder+"/"+macAddress+"/"+str(dateTime.year).zfill(4)  + "/" + str(dateTime.month).zfill(2)+ "/"+str(dateTime.day).zfill(2)+\
-        "/audio/MINTS_"+ macAddress+ "_" +sensorName + "_" + birdName + "_" + str(confidence) + "_" + \
-            str(dateTime.year).zfill(4) + "_" +str(dateTime.month).zfill(2) + "_" +str(dateTime.day).zfill(2) + "_" +str(dateTime.hour).zfill(2) + "_" +str(dateTime.minute).zfill(2)+ "_" +str(dateTime.second).zfill(2) +".wav"
+def getWritePathAudio(sensorName,birdName,commonName,scientificName,confidence,dateTime):
+    writePath = dataFolder+"/"+macAddress+"/"+str(dateTime.year).zfill(4)  + "/" + str(dateTime.month).zfill(2)+ "/"+str(dateTime.day).zfill(2) + \
+        "/audio/MINTS_"+ macAddress+ "_" + sensorName + "_" + str(birdName) + "_" + str(commonName.replace(" ", "-")) + "_" + str(scientificName.replace(" ", "-")) + "_"+ str(confidence) + "_" + \
+            str(dateTime.year).zfill(4) + "_" + str(dateTime.month).zfill(2) + "_" + str(dateTime.day).zfill(2) + \
+    		"_" +str(dateTime.hour).zfill(2) + "_" +str(dateTime.minute).zfill(2)+ "_" +str(dateTime.second).zfill(2) +".wav"
+    print(writePath)
     return writePath;
 
 

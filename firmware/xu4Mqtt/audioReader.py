@@ -32,7 +32,7 @@ minConfidence      = .3
 numOfThreads       = 4
 
 dataFolder         = mD.dataFolder
-saveConfidence     = .75
+saveConfidence     = .5
 
 
 currentIndex = 0 
@@ -67,10 +67,16 @@ def main(cfg,currentIndex):
                 
                 mSR.sensorFinisher(dateTime,"MBC001",sensorDictionary)
                 if row['Confidence'] > saveConfidence:
-                    audio_segments = np.array_split(recording, 3)
-                    writePathAudio = mSR.getWritePathAudio("MBC001",birdName,confidence,dateTime)
+                    print(sensorDictionary)
+                    # print(index)
+                    
+                    audioSegments = np.array_split(recording, period/3)
+                    # print(audioSegments)
+                    writePathAudio = mSR.getWritePathAudio("MBC001",birdName,row['Common name'],row['Scientific name'],int(confidence*10000),dateTime)
                     mSR.directoryCheck(writePathAudio)
-                    write(writePathAudio, sampleRate, audio_segments[index])  # Save as WAV file
+                    print(row['Start (s)'])
+                    print(int(row['Start (s)']/3))
+                    write(writePathAudio, sampleRate, audioSegments[int(row['Start (s)']/3)])  # Save as WAV file
 
             print("=============")
             print()
@@ -86,8 +92,6 @@ if __name__ == "__main__":
     print("=============")
     print("Connecting to the microphone on Channel: {0}".format(channelSelected) + " with Sample Rate " + str(sampleRate))
     main(cfg,currentIndex)    
-
-
 
 
 
